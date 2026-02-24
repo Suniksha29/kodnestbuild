@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KodNest Premium Build System - Example Page</title>
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <div class="top-bar-brand">KodNest Build</div>
+      </div>
+      
+      <div class="top-bar-center">
+        <div class="progress">
+          <div class="progress-step active">1</div>
+          <div class="progress-text">Step 1 of 5</div>
+        </div>
+      </div>
+      
+      <div class="top-bar-right">
+        <span class="badge badge-primary">In Progress</span>
+      </div>
+    </div>
+
+    <!-- CONTEXT HEADER -->
+    <div class="context-header">
+      <div class="context-header-content">
+        <h1 class="context-header-title">Build Your Component</h1>
+        <p class="context-header-subtitle">Define the structure and behavior of your new component. Be specific about the input fields and validation rules.</p>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-content">
+      <!-- PRIMARY WORKSPACE (70%) -->
+      <div class="primary-workspace">
+        <!-- Card Example -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Component Details</h3>
+          </div>
+          <div class="card-body">
+            <div class="form">
+              <div class="input-group">
+                <label for="component-name">Component Name</label>
+                <input type="text" id="component-name" placeholder="e.g., Alert Modal, User Card">
+                <div class="input-hint">Technical name used in code</div>
+              </div>
+
+              <div class="form-row two-col">
+                <div class="input-group">
+                  <label for="component-type">Component Type</label>
+                  <select id="component-type">
+                    <option value="">Select type...</option>
+                    <option value="input">Form Input</option>
+                    <option value="display">Display</option>
+                    <option value="layout">Layout</option>
+                    <option value="feedback">Feedback</option>
+                  </select>
+                </div>
+
+                <div class="input-group">
+                  <label for="component-category">Category</label>
+                  <select id="component-category">
+                    <option value="">Select category...</option>
+                    <option value="common">Common</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User-Facing</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="component-desc">Description</label>
+                <textarea id="component-desc" placeholder="What does this component do? When should it be used?"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Another Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Design Specifications</h3>
+          </div>
+          <div class="card-body">
+            <div class="section">
+              <h4>States</h4>
+              <ul>
+                <li>Default state (idle)</li>
+                <li>Hover state</li>
+                <li>Active/Selected state</li>
+                <li>Disabled state</li>
+                <li>Error state</li>
+                <li>Loading state</li>
+              </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <h4>Responsive Behavior</h4>
+              <p>Components must be responsive and work on mobile, tablet, and desktop without losing functionality or clarity.</p>
+              <ul>
+                <li>Layout adapts below 768px</li>
+                <li>Text remains readable on small screens</li>
+                <li>Touch targets minimum 44px on mobile</li>
+                <li>No horizontal scrolling on mobile</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-primary">Continue to Next Step</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECONDARY PANEL (30%) -->
+      <div class="secondary-panel">
+        <!-- Step Explanation -->
+        <div class="panel-section">
+          <div class="panel-section-title">Step 1: Definition</div>
+          <div class="panel-section-content">
+            <p class="panel-explanation">
+              Start by clearly defining what your component does, what problem it solves, and when it should be used. Be specific about inputs and outputs.
+            </p>
+            <div class="alert alert-primary">
+              <div class="alert-title">Pro Tip</div>
+              <p class="alert-message">Components with clear purpose are easier to maintain and reuse across your product.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyable Prompt Box -->
+        <div class="panel-section">
+          <div class="panel-section-title">AI Prompt</div>
+          <div class="panel-section-content">
+            <p class="panel-explanation">Use this prompt to generate your component:</p>
+            <div class="copyable-box">
+              <div class="copyable-content">Create a React component that displays a status badge. It should accept a status prop (success, warning, error, neutral) and display the appropriate color and label.</div>
+              <button class="copyable-btn" onclick="navigator.clipboard.writeText('Create a React component that displays a status badge. It should accept a status prop (success, warning, error, neutral) and display the appropriate color and label.')">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="panel-section">
+          <div class="panel-section-title">Actions</div>
+          <div class="panel-section-content">
+            <div class="panel-button-group">
+              <button class="btn btn-primary btn-full">Build in Lovable</button>
+              <button class="btn btn-secondary btn-full">It Worked!</button>
+              <button class="btn btn-secondary btn-full">Report Error</button>
+              <button class="btn btn-tertiary btn-full">Add Screenshot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROOF FOOTER -->
+    <div class="proof-footer">
+      <div class="proof-footer-content">
+        <div class="proof-item">
+          <input type="checkbox" id="proof-ui">
+          <label for="proof-ui" class="proof-label">
+            <span class="proof-label-text">UI Built</span>
+            <span class="proof-label-hint">Upload screenshot or link</span>
+          </label>
+        </div>
+
+        <div class="proof-item">
+          <input type="checkbox" id="proof-logic">
+          <label for="proof-logic" class="proof-label">
+            <span class="proof-label-text">Logic Working</span>
+            <span class="proof-label-hint">Test and verify</span>
+          </label>
+        </div>
+
+        <div class="proof-item">
+          <input type="checkbox" id="proof-test">
+          <label for="proof-test" class="proof-label">
+            <span class="proof-label-text">Test Passed</span>
+            <span class="proof-label-hint">Include test results</span>
+          </label>
+        </div>
+
+        <div class="proof-item">
+          <input type="checkbox" id="proof-deployed">
+          <label for="proof-deployed" class="proof-label">
+            <span class="proof-label-text">Deployed</span>
+            <span class="proof-label-hint">Production URL</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Example: Enable proof checkboxes only with evidence
+    const proofItems = document.querySelectorAll('.proof-item input[type="checkbox"]');
+    
+    proofItems.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          alert('Evidence required for this proof item. In production, this would open an upload dialog.');
+          this.checked = false; // Reset for demo
+        }
+      });
+    });
+
+    // Button interactions
+    document.querySelector('.btn-primary').addEventListener('click', function() {
+      alert('Moving to next step...');
+    });
+
+    document.querySelector('.btn-secondary').addEventListener('click', function() {
+      if (this.textContent === 'It Worked!') {
+        alert('Great! Marking this step as shipped.');
+      } else if (this.textContent === 'Cancel') {
+        alert('Changes discarded.');
+      } else if (this.textContent === 'Report Error') {
+        alert('Opening error report dialog...');
+      } else if (this.textContent === 'Add Screenshot') {
+        alert('Opening file upload for screenshot...');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component Reference - KodNest Premium Build System</title>
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  
+  <style>
+    body {
+      padding: var(--spacing-lg);
+    }
+    
+    .ref-section {
+      max-width: 1000px;
+      margin: 0 auto var(--spacing-xl);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+    }
+    
+    .ref-section-title {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid var(--color-border);
+    }
+    
+    .ref-component {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border);
+      align-items: flex-start;
+    }
+    
+    .ref-component:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .ref-preview {
+      flex: 0 0 200px;
+      background-color: var(--color-background);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+    }
+    
+    .ref-info {
+      flex: 1;
+    }
+    
+    .ref-name {
+      font-weight: 600;
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .ref-code {
+      background-color: #F4F3F0;
+      padding: var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      font-family: "Menlo", "Monaco", monospace;
+      font-size: var(--font-size-xs);
+      line-height: 1.5;
+      overflow-x: auto;
+      color: var(--color-text-secondary);
+    }
+    
+    .intro {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .intro h1 {
+      font-family: var(--font-serif);
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .intro p {
+      font-size: var(--font-size-md);
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="intro">
+    <h1>Component Reference</h1>
+    <p>Complete guide to all KodNest Premium Build System components. Each component maintains the design philosophy of calm, intentional, coherent, and confident.</p>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Buttons</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <button class="btn btn-primary">Primary Button</button>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Primary Button</div>
+        <p>Main call-to-action. Solid deep red background with white text.</p>
+        <div class="ref-code">
+&lt;button class="btn btn-primary"&gt;Action&lt;/button&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <button class="btn btn-secondary">Secondary Button</button>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Secondary Button</div>
+        <p>Alternative action. Outlined with deep red border and text.</p>
+        <div class="ref-code">
+&lt;button class="btn btn-secondary"&gt;Alternative&lt;/button&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <button class="btn btn-tertiary">Tertiary Button</button>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Tertiary Button</div>
+        <p>Less prominent action. Transparent with text only.</p>
+        <div class="ref-code">
+&lt;button class="btn btn-tertiary"&gt;Less Important&lt;/button&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <button class="btn btn-primary" style="width: 120px;">Small</button>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Button Size: Small</div>
+        <p>Use for compact layouts or secondary buttons.</p>
+        <div class="ref-code">
+&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <button class="btn btn-primary btn-lg" style="width: 150px;">Large</button>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Button Size: Large</div>
+        <p>Use for prominent actions or highlight important CTAs.</p>
+        <div class="ref-code">
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <button class="btn btn-primary" disabled>Disabled</button>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Button: Disabled State</div>
+        <p>When action is unavailable. Reduced opacity, cursor not-allowed.</p>
+        <div class="ref-code">
+&lt;button class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Badges</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <span class="badge badge-primary">Primary</span>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Badge: Primary</div>
+        <p>Deep red background. Use for main status indicators.</p>
+        <div class="ref-code">
+&lt;span class="badge badge-primary"&gt;Primary&lt;/span&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <span class="badge badge-success">Success</span>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Badge: Success</div>
+        <p>Muted green background. Indicates successful completion.</p>
+        <div class="ref-code">
+&lt;span class="badge badge-success"&gt;Success&lt;/span&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <span class="badge badge-warning">Warning</span>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Badge: Warning</div>
+        <p>Muted amber background. Indicates caution or pending action.</p>
+        <div class="ref-code">
+&lt;span class="badge badge-warning"&gt;Warning&lt;/span&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <span class="badge badge-neutral">Neutral</span>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Badge: Neutral</div>
+        <p>Gray background. For neutral or informational status.</p>
+        <div class="ref-code">
+&lt;span class="badge badge-neutral"&gt;Neutral&lt;/span&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Alerts</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="alert alert-primary" style="max-width: 200px;">
+          <div class="alert-title">Heads up</div>
+          <p class="alert-message">Important information or notice.</p>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Alert: Primary</div>
+        <p>Red left border with subtle background. Use for important notices.</p>
+        <div class="ref-code">
+&lt;div class="alert alert-primary"&gt;
+  &lt;div class="alert-title"&gt;Title&lt;/div&gt;
+  &lt;p class="alert-message"&gt;Message&lt;/p&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="alert alert-success" style="max-width: 200px;">
+          <div class="alert-title">All set!</div>
+          <p class="alert-message">Your component was deployed.</p>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Alert: Success</div>
+        <p>Green left border. Indicates successful completion.</p>
+        <div class="ref-code">
+&lt;div class="alert alert-success"&gt;...&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="alert alert-warning" style="max-width: 200px;">
+          <div class="alert-title">Careful</div>
+          <p class="alert-message">This action cannot be undone.</p>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Alert: Warning</div>
+        <p>Amber left border. Use for caution messages.</p>
+        <div class="ref-code">
+&lt;div class="alert alert-warning"&gt;...&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="alert alert-error" style="max-width: 200px;">
+          <div class="alert-title">Error</div>
+          <p class="alert-message">Something went wrong. Try again.</p>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Alert: Error</div>
+        <p>Red left border. Explains error and path to fix it.</p>
+        <div class="ref-code">
+&lt;div class="alert alert-error"&gt;...&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Cards</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start; width: 300px;">
+        <div class="card" style="width: 100%;">
+          <div class="card-header">
+            <h3>Card Title</h3>
+          </div>
+          <div class="card-body">
+            <p>Card content goes here. Clean borders, no drop shadows.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Card: Standard</div>
+        <p>Container for related content. Uses border, not shadow.</p>
+        <div class="ref-code">
+&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;
+    &lt;h3&gt;Title&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="card-body"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Form Inputs</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="input-group" style="width: 200px;">
+          <label for="input-example">Input Label</label>
+          <input type="text" id="input-example" placeholder="Placeholder text">
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Text Input</div>
+        <p>Standard input with focus state showing accent color border and subtle shadow.</p>
+        <div class="ref-code">
+&lt;div class="input-group"&gt;
+  &lt;label for="input"&gt;Label&lt;/label&gt;
+  &lt;input type="text" id="input"&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="input-group" style="width: 200px;">
+          <label for="textarea-example">Textarea Label</label>
+          <textarea id="textarea-example" placeholder="Multi-line text"></textarea>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Textarea</div>
+        <p>For longer form input. Vertically resizable.</p>
+        <div class="ref-code">
+&lt;textarea placeholder="..."&gt;&lt;/textarea&gt;
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start;">
+        <div class="input-group" style="width: 200px;">
+          <label for="error-example">Input with Error</label>
+          <input type="text" id="error-example" class="error" value="Invalid">
+          <div class="input-error">Email already in use</div>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Input: Error State</div>
+        <p>Red border, error message below. Explains what went wrong.</p>
+        <div class="ref-code">
+&lt;input class="error"&gt;
+&lt;div class="input-error"&gt;Error message&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPYABLE BOX -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Copyable Box</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start; width: 100%;">
+        <div class="copyable-box">
+          <div class="copyable-content">Create a modal component that displays user profile information in a centered overlay with a close button.</div>
+          <button class="copyable-btn" onclick="navigator.clipboard.writeText('Create a modal component that displays user profile information in a centered overlay with a close button.')">Copy</button>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Copyable Box</div>
+        <p>For AI prompts or inline code snippets. Light background, monospace font.</p>
+        <div class="ref-code">
+&lt;div class="copyable-box"&gt;
+  &lt;div class="copyable-content"&gt;Content&lt;/div&gt;
+  &lt;button class="copyable-btn"&gt;Copy&lt;/button&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Progress Indicator</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview">
+        <div class="progress">
+          <div class="progress-step completed">✓</div>
+          <div class="progress-step active">2</div>
+          <div class="progress-step">3</div>
+          <div class="progress-text" style="margin-left: 8px;">Step 2 of 5</div>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Progress Indicator</div>
+        <p>Shows current step and progress. Completed steps are green, active is red, inactive is gray.</p>
+        <div class="ref-code">
+&lt;div class="progress"&gt;
+  &lt;div class="progress-step completed"&gt;✓&lt;/div&gt;
+  &lt;div class="progress-step active"&gt;2&lt;/div&gt;
+  &lt;div class="progress-step"&gt;3&lt;/div&gt;
+  &lt;div class="progress-text"&gt;Step 2 of 5&lt;/div&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Checklist</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start; width: 100%;">
+        <div class="checklist" style="width: 100%; max-width: 400px;">
+          <div class="checklist-item">
+            <input type="checkbox" id="item1">
+            <label for="item1" class="checklist-label">
+              <span class="checklist-label">UI Built</span>
+              <span class="checklist-hint">Upload screenshot or Figma link</span>
+            </label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="item2" checked>
+            <label for="item2" class="checklist-label">
+              <span class="checklist-label">Logic Working</span>
+              <span class="checklist-hint">Test and verify functionality</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Checklist</div>
+        <p>Items with checkboxes and optional evidence requirement. Used in proof footer.</p>
+        <div class="ref-code">
+&lt;div class="checklist-item"&gt;
+  &lt;input type="checkbox"&gt;
+  &lt;label class="checklist-label"&gt;
+    &lt;span&gt;Label&lt;/span&gt;
+    &lt;span class="checklist-hint"&gt;Hint&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="ref-section">
+    <h2 class="ref-section-title">Empty State</h2>
+
+    <div class="ref-component">
+      <div class="ref-preview" style="align-items: flex-start; width: 100%;">
+        <div class="empty-state">
+          <div class="empty-state-icon">📋</div>
+          <div class="empty-state-title">No components yet</div>
+          <div class="empty-state-text">Create your first component to get started building your design system.</div>
+          <button class="btn btn-primary empty-state-action">Create Component</button>
+        </div>
+      </div>
+      <div class="ref-info">
+        <div class="ref-name">Empty State</div>
+        <p>When there's no content. Provides clear next action, never feels dead.</p>
+        <div class="ref-code">
+&lt;div class="empty-state"&gt;
+  &lt;div class="empty-state-icon"&gt;Icon&lt;/div&gt;
+  &lt;div class="empty-state-title"&gt;Title&lt;/div&gt;
+  &lt;div class="empty-state-text"&gt;Text&lt;/div&gt;
+  &lt;button&gt;Action&lt;/button&gt;
+&lt;/div&gt;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: var(--spacing-xl); padding-top: var(--spacing-lg); border-top: 1px solid var(--color-border); color: var(--color-text-secondary);">
+    <p><strong>Philosophy:</strong> Calm. Intentional. Coherent. Confident.</p>
+    <p>Everything must feel like one mind designed it.</p>
+  </div>
+</body>
+</html>

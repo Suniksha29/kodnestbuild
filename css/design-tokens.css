@@ -1,0 +1,91 @@
+/**
+ * KodNest Premium Build System
+ * Design Tokens
+ * 
+ * Philosophy: Calm, Intentional, Coherent, Confident
+ * Not flashy, not loud, not playful, not hackathon-style
+ */
+
+:root {
+  /* COLOR SYSTEM - Maximum 4 colors */
+  --color-background: #F7F6F3;
+  --color-text-primary: #111111;
+  --color-accent: #8B0000;
+  --color-success: #2D5016;
+  --color-warning: #8B7500;
+  --color-border: #E8E7E4;
+  --color-surface: #FFFFFF;
+  --color-text-secondary: #5A5A5A;
+  --color-disabled: #D4D3D0;
+
+  /* SPACING SYSTEM - Strict scale */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+
+  /* TYPOGRAPHY */
+  --font-serif: "Georgia", "Garamond", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  /* FONT SIZES - Controlled, no random sizes */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 24px;
+  --font-size-xl: 32px;
+  --font-size-2xl: 40px;
+  --font-size-3xl: 48px;
+
+  /* LINE HEIGHT */
+  --line-height-tight: 1.4;
+  --line-height-base: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* BORDER RADIUS */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* TRANSITIONS - Calm, no bounce */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+
+  /* SHADOWS - Subtle, no heavy drops */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-subtle: 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+  /* BORDER */
+  --border-width-thin: 1px;
+  --border-width-base: 2px;
+
+  /* Z-INDEX SCALE */
+  --z-background: -1;
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 50;
+  --z-modal: 1000;
+  --z-tooltip: 1100;
+
+  /* BREAKPOINTS */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* Semantic color aliases */
+:root {
+  --color-button-primary-bg: var(--color-accent);
+  --color-button-primary-text: var(--color-surface);
+  --color-button-secondary-border: var(--color-accent);
+  --color-button-secondary-text: var(--color-accent);
+  --color-input-border: var(--color-border);
+  --color-input-focus: var(--color-accent);
+  --color-input-bg: var(--color-surface);
+}
