@@ -42,8 +42,8 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #6B0000;
-  border-color: #6B0000;
+  background-color: #003D82;
+  border-color: #003D82;
 }
 
 .btn-primary:active:not(:disabled) {
@@ -64,15 +64,15 @@
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: rgba(139, 0, 0, 0.05);
-  border-color: #6B0000;
-  color: #6B0000;
+  background-color: rgba(0, 82, 204, 0.05);
+  border-color: #0052CC;
+  color: #0052CC;
 }
 
 .btn-secondary:active:not(:disabled) {
-  background-color: rgba(139, 0, 0, 0.1);
-  border-color: #500000;
-  color: #500000;
+  background-color: rgba(0, 82, 204, 0.1);
+  border-color: #003D82;
+  color: #003D82;
 }
 
 /* Tertiary Button - Ghost */
@@ -525,7 +525,7 @@ textarea.success:focus {
   gap: var(--spacing-md);
   padding: var(--spacing-lg);
   background-color: rgba(204, 0, 0, 0.05);
-  border: 1px solid #FF4444;
+  border: 1px solid #0066FF;
   border-radius: var(--radius-lg);
 }
 

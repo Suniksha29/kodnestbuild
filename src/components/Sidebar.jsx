@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { BarChart3, Code2, FileText, BookOpen, User } from 'lucide-react'
+import { BarChart3, Code2, FileText, BookOpen, User, Zap, ClipboardList } from 'lucide-react'
 
 export default function Sidebar() {
   const location = useLocation()
@@ -9,6 +9,8 @@ export default function Sidebar() {
     { path: '/practice', label: 'Practice', icon: Code2 },
     { path: '/assessments', label: 'Assessments', icon: FileText },
     { path: '/resources', label: 'Resources', icon: BookOpen },
+    { path: '/analyzer', label: 'Analyzer', icon: Zap },
+    { path: '/history', label: 'History', icon: ClipboardList },
     { path: '/profile', label: 'Profile', icon: User },
   ]
 

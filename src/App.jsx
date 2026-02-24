@@ -6,6 +6,9 @@ import Practice from './pages/Practice'
 import Assessments from './pages/Assessments'
 import Resources from './pages/Resources'
 import Profile from './pages/Profile'
+import Analyzer from './pages/Analyzer'
+import Results from './pages/Results'
+import History from './pages/History'
 
 function App() {
   return (
@@ -22,6 +25,11 @@ function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
+
+        {/* Analysis Routes */}
+        <Route path="/analyzer" element={<Analyzer />} />
+        <Route path="/results/:analysisId" element={<Results />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </Router>
   )
