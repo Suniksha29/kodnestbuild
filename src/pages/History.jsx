@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Trash2, Eye, Plus } from 'lucide-react'
+import { Trash2, Eye, Plus, AlertTriangle } from 'lucide-react'
 import Card from '../components/Card'
 import { getHistory, deleteAnalysis } from '../utils/storageService'
 
 export default function History() {
   const [history, setHistory] = useState([])
+  const [corruptedCount, setCorruptedCount] = useState(0)
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
-    const data = getHistory()
-    setHistory(data)
+    const result = getHistory()
+    setHistory(result.entries || [])
+    setCorruptedCount(result.corruptedCount || 0)
     setLoading(false)
   }, [])
 
@@ -52,6 +54,19 @@ export default function History() {
           </button>
         </div>
 
+        {/* Corruption Warning */}
+        {corruptedCount > 0 && (
+          <Card className="mb-6 p-4 bg-orange-50 border-2 border-orange-200 flex gap-3">
+            <AlertTriangle className="w-5 h-5 text-orange-700 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-semibold text-orange-900">⚠️ Corrupted Entries Detected</p>
+              <p className="text-sm text-orange-800 mt-1">
+                {corruptedCount} saved {corruptedCount === 1 ? 'entry could' : 'entries could'} not be loaded. These entries have been skipped. Create a new analysis to continue.
+              </p>
+            </div>
+          </Card>
+        )}
+
         {/* History List */}
         {history.length === 0 ? (
           <Card className="p-12 text-center">
@@ -69,7 +84,8 @@ export default function History() {
         ) : (
           <div className="grid gap-4">
             {history.map((item) => {
-              const score = item.readinessScore
+              // Support both old (readinessScore) and new (finalScore) formats
+              const score = item.finalScore !== undefined ? item.finalScore : item.readinessScore
               const getScoreColor = (s) => {
                 if (s >= 80) return 'bg-green-50 border-green-200'
                 if (s >= 60) return 'bg-blue-50 border-blue-200'

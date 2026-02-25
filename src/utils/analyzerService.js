@@ -1,4 +1,18 @@
 import { extractSkills } from './skillsDetector'
+import {
+  inferCompanySize,
+  inferIndustry,
+  getHiringFocus,
+  generateRoundMapping
+} from './companyIntelService'
+import {
+  createAnalysisEntry,
+  ensureValidSkills
+} from './dataValidator'
+import {
+  calculateBaseScore,
+  createScoreObject
+} from './scoreManagement'
 
 const PREPARATION_TEMPLATES = {
   'Round 1: Aptitude & Basics': {
@@ -253,35 +267,26 @@ export function generateInterviewQuestions(detectedCategories) {
 }
 
 export function calculateReadinessScore(jdText, company, role, detectedCategories) {
-  let score = 35 // Base score
-
-  // +5 per detected category (max 30)
-  score += Math.min(detectedCategories.length * 5, 30)
-
-  // +10 for company name
-  if (company && company.trim().length > 0) {
-    score += 10
-  }
-
-  // +10 for role
-  if (role && role.trim().length > 0) {
-    score += 10
-  }
-
-  // +10 if JD is detailed (> 800 chars)
-  if (jdText.length > 800) {
-    score += 10
-  }
-
-  return Math.min(score, 100)
+  // Use the new score management function
+  return calculateBaseScore(jdText, company, role, detectedCategories)
 }
 
 export function analyzeJD(jdText, company = '', role = '') {
   const { detectedSkills, detectedCategories, totalCategories } = extractSkills(jdText)
 
-  const analysis = {
-    company: company || 'Unnamed Company',
-    role: role || 'Unnamed Role',
+  // Generate company intel
+  const companySize = inferCompanySize(company)
+  const industry = inferIndustry(jdText, company)
+  const hiringFocus = getHiringFocus(companySize)
+  const roundMapping = generateRoundMapping(companySize, detectedSkills, detectedCategories)
+
+  // Calculate stable base score
+  const baseScore = calculateReadinessScore(jdText, company, role, detectedCategories)
+
+  // Create base analysis object
+  const baseAnalysis = {
+    company: company || '',
+    role: role || '',
     jdText: jdText,
     detectedSkills: detectedSkills,
     detectedCategories: detectedCategories,
@@ -289,9 +294,24 @@ export function analyzeJD(jdText, company = '', role = '') {
     preparationChecklist: generatePreparationChecklist(detectedCategories),
     sevenDayPlan: generate7DayPlan(detectedCategories),
     interviewQuestions: generateInterviewQuestions(detectedCategories),
-    readinessScore: calculateReadinessScore(jdText, company, role, detectedCategories),
-    timestamp: new Date().toISOString()
+    readinessScore: baseScore,
+    baseScore: baseScore,
+    finalScore: baseScore,
+    timestamp: new Date().toISOString(),
+    // Company Intel
+    companyIntel: {
+      size: companySize,
+      industry: industry,
+      hiringFocus: hiringFocus,
+      roundMapping: roundMapping
+    }
   }
+
+  // Create standardized entry with all required fields
+  const analysis = createAnalysisEntry(baseAnalysis)
+
+  // Ensure skills exist (populate with defaults if needed)
+  ensureValidSkills(analysis)
 
   return analysis
 }

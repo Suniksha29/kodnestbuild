@@ -9,6 +9,8 @@ import Profile from './pages/Profile'
 import Analyzer from './pages/Analyzer'
 import Results from './pages/Results'
 import History from './pages/History'
+import TestChecklist from './pages/TestChecklist'
+import ShipConfirmation from './pages/ShipConfirmation'
 
 function App() {
   return (
@@ -30,6 +32,10 @@ function App() {
         <Route path="/analyzer" element={<Analyzer />} />
         <Route path="/results/:analysisId" element={<Results />} />
         <Route path="/history" element={<History />} />
+
+        {/* Quality Assurance Routes */}
+        <Route path="/prp/07-test" element={<TestChecklist />} />
+        <Route path="/prp/08-ship" element={<ShipConfirmation />} />
       </Routes>
     </Router>
   )

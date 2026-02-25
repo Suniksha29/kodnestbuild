@@ -2,7 +2,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { ArrowLeft, Download, Copy, CheckCircle, AlertCircle } from 'lucide-react'
 import Card, { CardHeader, CardContent } from '../components/Card'
+import CompanyIntel from '../components/CompanyIntel'
+import RoundMapping from '../components/RoundMapping'
 import { getAnalysisById, updateAnalysis } from '../utils/storageService'
+import { calculateFinalScore } from '../utils/scoreManagement'
 
 function SkillTagsInteractive({ detectedSkills, skillConfidenceMap, onConfidenceChange }) {
   return (
@@ -169,28 +172,18 @@ export default function Results() {
       const data = getAnalysisById(analysisId)
       setAnalysis(data)
       setSkillConfidenceMap(data?.skillConfidenceMap || {})
-      setLiveScore(data?.readinessScore || 0)
+      // Use finalScore if available, otherwise readinessScore (backward compatibility)
+      setLiveScore(data?.finalScore !== undefined ? data.finalScore : data?.readinessScore || 0)
       setLoading(false)
     }
   }, [analysisId])
 
-  // Calculate live score based on skill confidence
+  // Calculate final score based on skill confidence changes
   useEffect(() => {
     if (analysis && skillConfidenceMap) {
-      let newScore = analysis.readinessScore
-      
-      // Count skills marked as "know" and "practice"
-      let knowCount = 0
-      let practiceCount = 0
-      
-      Object.values(skillConfidenceMap).forEach(confidence => {
-        if (confidence === 'know') knowCount++
-        else if (confidence === 'practice') practiceCount++
-      })
-      
-      newScore += (knowCount * 2) - (practiceCount * 2)
-      newScore = Math.max(0, Math.min(100, newScore))
-      
+      // Use baseScore for calculation (stable), not readinessScore
+      const baseScore = analysis.baseScore || analysis.readinessScore || 0
+      const newScore = calculateFinalScore(baseScore, skillConfidenceMap)
       setLiveScore(newScore)
     }
   }, [skillConfidenceMap, analysis])
@@ -200,8 +193,14 @@ export default function Results() {
     setSkillConfidenceMap(updated)
     
     // Persist to history entry
+    // Update skillConfidenceMap and finalScore (never modify baseScore)
     if (analysisId) {
-      updateAnalysis(analysisId, { skillConfidenceMap: updated, readinessScore: liveScore })
+      const baseScore = analysis.baseScore || analysis.readinessScore || 0
+      const finalScore = calculateFinalScore(baseScore, updated)
+      updateAnalysis(analysisId, {
+        skillConfidenceMap: updated,
+        finalScore: finalScore
+      })
     }
   }
 
@@ -230,12 +229,27 @@ export default function Results() {
   }
 
   const downloadAsText = () => {
+    const companyIntel = analysis.companyIntel
+    const roundsText = companyIntel && companyIntel.roundMapping
+      ? companyIntel.roundMapping
+          .map((r, i) => `Round ${r.number}: ${r.title}\nDescription: ${r.description}\nWhy: ${r.why}\nDuration: ${r.duration}\n`)
+          .join('\n')
+      : ''
+
     const content = `JOB ANALYSIS REPORT
 Company: ${analysis.company}
 Role: ${analysis.role}
 Date: ${new Date(analysis.createdAt).toLocaleDateString()}
 
 READINESS SCORE: ${liveScore}/100
+
+COMPANY INTEL
+Company Size: ${companyIntel?.size || 'Unknown'}
+Industry: ${companyIntel?.industry || 'Unknown'}
+Hiring Focus: ${companyIntel?.hiringFocus?.title || 'Unknown'}
+
+INTERVIEW ROUND MAPPING
+${roundsText}
 
 7-DAY PREPARATION PLAN
 ${get7DayPlanText()}
@@ -248,6 +262,9 @@ ${getQuestionsText()}
 
 SKILL CONFIDENCE MAP
 ${Object.entries(skillConfidenceMap).map(([skill, conf]) => `${skill}: ${conf}`).join('\n')}
+
+---
+Demo Mode: Company intel generated heuristically based on job description analysis.
     `
 
     const blob = new Blob([content], { type: 'text/plain' })
@@ -365,7 +382,10 @@ ${Object.entries(skillConfidenceMap).map(([skill, conf]) => `${skill}: ${conf}`)
           <Card className="p-6">
             <ReadinessScore score={liveScore} />
             <p className="text-xs text-slate-600 mt-4 text-center">
-              Base: {analysis.readinessScore} → Current: {liveScore}
+              Base: {analysis.baseScore || analysis.readinessScore || 0} → Current: {liveScore}
+            </p>
+            <p className="text-xs text-slate-500 mt-1 text-center italic">
+              Base score is stable. Current updates with skill confidence.
             </p>
           </Card>
 
@@ -392,6 +412,21 @@ ${Object.entries(skillConfidenceMap).map(([skill, conf]) => `${skill}: ${conf}`)
             </CardContent>
           </Card>
         </div>
+
+        {/* Company Intel Section */}
+        {analysis.companyIntel && (
+          <CompanyIntel
+            company={analysis.company}
+            industry={analysis.companyIntel.industry}
+            size={analysis.companyIntel.size}
+            hiringFocus={analysis.companyIntel.hiringFocus}
+          />
+        )}
+
+        {/* Round Mapping Section */}
+        {analysis.companyIntel && analysis.companyIntel.roundMapping && (
+          <RoundMapping rounds={analysis.companyIntel.roundMapping} />
+        )}
 
         {/* 7-Day Plan */}
         <Card className="p-6 mb-8">

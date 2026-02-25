@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Send } from 'lucide-react'
+import { Send, AlertCircle } from 'lucide-react'
 import Card, { CardHeader, CardContent } from '../components/Card'
 import { analyzeJD } from '../utils/analyzerService'
 import { saveAnalysis } from '../utils/storageService'
+import { validateJDInput } from '../utils/dataValidator'
 
 export default function Analyzer() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function Analyzer() {
     jdText: ''
   })
   const [analyzing, setAnalyzing] = useState(false)
+  const [jdValidation, setJdValidation] = useState(null)
   const navigate = useNavigate()
 
   const handleInputChange = (e) => {
@@ -20,13 +22,21 @@ export default function Analyzer() {
       ...prev,
       [name]: value
     }))
+
+    // Validate JD input on change
+    if (name === 'jdText') {
+      const validation = validateJDInput(value)
+      setJdValidation(validation)
+    }
   }
 
   const handleAnalyze = async (e) => {
     e.preventDefault()
 
-    if (!formData.jdText.trim()) {
-      alert('Please paste a job description to analyze')
+    // Validate JD
+    const validation = validateJDInput(formData.jdText)
+    if (!validation.isValid) {
+      alert(validation.message)
       return
     }
 
@@ -142,6 +152,18 @@ We value problem-solving skills, communication, and ability to learn quickly.
               className="w-full px-md py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"
               rows={12}
             />
+            
+            {/* JD Validation Warning */}
+            {jdValidation && jdValidation.warning && (
+              <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex gap-3">
+                <AlertCircle className="w-5 h-5 text-yellow-700 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm text-yellow-800 font-medium">Heads Up</p>
+                  <p className="text-sm text-yellow-700 mt-1">{jdValidation.message}</p>
+                </div>
+              </div>
+            )}
+
             <p className="text-xs text-secondary mt-2">
               Paste the full job description. Longer JDs (800+ chars) score better.
             </p>
